@@ -3,14 +3,21 @@ import boto3
 import praw
 import pandas as pd
 
+f = open("config_r.txt", "r")
+client_id = f.readline().split(":")[1].strip()
+client_secret = f.readline().split(":")[1].strip()
+user_agent = f.readline().split(":")[1].strip()
+
 # Replace with your AWS credentials and Reddit API credentials
 AWS_ACCESS_KEY_ID = 'access_key'
 AWS_SECRET_ACCESS_KEY = 'secret_access_key'
 REGION_NAME = 'region_name'
 
-reddit = praw.Reddit(client_id='client_id_key',
-                     client_secret='client_secret_key',
-                     user_agent='testapp')
+# create a reddit instance
+reddit = praw.Reddit(client_id = client_id,
+                    client_secret = client_secret,
+                    user_agent = user_agent
+                    )
 
 def get_reddit_posts():
     posts = []
